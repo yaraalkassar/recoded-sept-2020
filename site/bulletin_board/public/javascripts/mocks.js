@@ -33,7 +33,7 @@ function create_post(title, message, callback) {
 
   var result = {
     success: success,
-    redirect_uri: "./view_post.html",
+    redirect_uri: "posts/view",
     error_message: error_message
   };
   callback(result);
@@ -86,7 +86,7 @@ function signup(username, password, callback) {
 
   var result = {
     success: success,
-    redirect_uri: "./post_list.html",
+    redirect_uri: "posts/recent",
     error_message: error_message
   };
   callback(result);
@@ -124,7 +124,7 @@ function login(username, password, callback) {
 
   var result = {
     success: success,
-    redirect_uri: "./post_list.html",
+    redirect_uri: "posts/recent",
     error_message: error_message
   };
   callback(result);

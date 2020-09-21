@@ -1,0 +1,61 @@
+<%- include('header', { title: title }); %>
+<%- include('nav_bar', { id: id }); %>
+
+<div class="container py-3">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <h1><%= title %></h1>
+
+      <div class="post-preview">
+        <a href="/posts/view">
+          <h2 class="post-title">
+            <i class="fa fa-thumbs-up"></i> Lorem ipsum dolor sit amet.
+          </h2>
+          <p class="post-meta">
+          <span class="font-weight-bold">You liked this post!</span>
+          Posted by
+          swright
+          on September 20, 2020</p>
+          <span class="post-subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          </span>
+        </a>
+      </div>
+      <hr>
+
+      <div class="post-preview">
+        <a href="/posts/view">
+          <h2 class="post-title">
+            Lorem ipsum dolor sit amet.
+          </h2>
+          <p class="post-meta">Posted by
+          swright
+          on September 20, 2020</p>
+          <span class="post-subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          </span>
+        </a>
+      </div>
+      <hr>
+
+      <div class="post-preview">
+        <a href="/posts/view">
+          <h2 class="post-title">
+            Lorem ipsum dolor sit amet.
+          </h2>
+          <p class="post-meta">Posted by
+          swright
+          on September 20, 2020</p>
+          <span class="post-subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+          </span>
+        </a>
+      </div>
+      <hr>
+
+    </div>
+  </div>
+</div>
+
+<%- include('footer', { javascript_uri: null }); %>
