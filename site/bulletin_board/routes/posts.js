@@ -29,4 +29,44 @@ router.get('/view', (req, res, next) => {
   });
 });
 
+/**
+ * The "Create Post" endpoint which accepts JSON to create a post.
+ *
+ * {
+ *   title: string,
+ *   message: string
+ * }
+ *
+ * {
+ *   success: boolean,
+ *   redirect_uri: string,
+ *   error_message: string
+ * }
+ */
+router.post('/', function(req, res, next) {
+  var post = req.body;
+
+  datasource.create(post, function(result) {
+    if (!result.success) {
+      res.status(400);
+    }
+    res.send(result);
+  });
+});
+
+/**
+ * The "Upvote" endpoint which accepts JSON to either "Upvote" or "De-upvote" a post.
+ *
+ * {
+ *   upvoted: boolean
+ * }
+ */
+router.post('/upvotes/', function(req, res, next) {
+  var vote = req.body;
+
+  posts_data.upvote(vote, function() {
+    res.send();
+  });
+});
+
 module.exports = router;

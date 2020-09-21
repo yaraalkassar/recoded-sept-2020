@@ -108,4 +108,47 @@ posts.trending = (callback) => {
   callback(posts);
 };
 
+/**
+ * Creates a new Post with the given title and message.
+ *
+ * The callback takes a single parameter:
+ * {
+ *   success: boolean,
+ *   redirect_uri: string,
+ *   error_message: string
+ * }
+ * redirect_uri will always be defined when success is true.
+ * error_message will always be defined when success is false.
+ * redirect_uri must only be used when success is true.
+ */
+posts.create = (post, callback) => {
+  var success = false;
+  var error_message = "";
+
+  if (post.title.trim().length < 10) {
+    error_message = "A post title is required (minimum 10 characters).";
+  } else if (post.message.trim().length < 20) {
+    error_message = "A post message is required (minimum 20 characters).";
+  } else {
+    success = true;
+  }
+
+  var result = {
+    success: success,
+    redirect_uri: "/posts/view",
+    error_message: error_message
+  };
+  callback(result);
+};
+
+/**
+ * Either upvotes or removes an upvote for the currently logged in user for the
+ * Post being displayed.
+ *
+ * The callback takes no parameters.
+ */
+posts.upvote = (vote, callback) => {
+  callback();
+};
+
 module.exports = posts;
