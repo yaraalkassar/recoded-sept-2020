@@ -1,0 +1,18 @@
+<div class="post-preview">
+  <a href="<%= post.url %>">
+    <h2 class="post-title">
+      <% if (post.liked) { %><i class="fa fa-thumbs-up"></i> <% } %><%= post.title %>
+    </h2>
+    <p class="post-meta">
+    <% if (post.liked) { %>
+      <span class="font-weight-bold">You liked this post!</span>
+    <% } %>
+    Posted by
+    <%= post.author %>
+    on <%= post.date %></p>
+    <span class="post-subtitle">
+      <%= post.excerpt %>
+    </span>
+  </a>
+</div>
+<hr>

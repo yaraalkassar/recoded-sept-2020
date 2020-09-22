@@ -1,0 +1,28 @@
+<%- include('header', { title: 'Post' }); %>
+<%- include('nav_bar', { id: null }); %>
+
+<!-- Page Content -->
+<div class="container py-3">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <div class="post-preview">
+        <h2 class="post-title">
+          <a id="thumbs_up_on" <% if (!post.liked) { %>style="display: none;"<% } %>><i class="fa fa-thumbs-up"></i></a>
+          <a id="thumbs_up_off" <% if (post.liked) { %>style="display: none;"<% } %>><i class="fa fa-thumbs-up" style="color: #DDD;" id="thumbs_up_off"></i></a>
+          <%= post.title %>
+        </h2>
+
+        <p class="post-meta">Posted by
+          <%= post.author %>
+          on <%= post.date %></p>
+        <p class="post-subtitle">
+          <%= post.body %>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%- include('footer', { javascript_uri: '/javascripts/view_post.js' }); %>

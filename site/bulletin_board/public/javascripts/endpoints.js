@@ -20,23 +20,26 @@ function create_post(title, message, callback) {
     message: message
   };
 
-  var success = false;
-  var error_message = "";
-
-  if (post.title.trim().length < 10) {
-    error_message = "A post title is required (minimum 10 characters).";
-  } else if (post.message.trim().length < 20) {
-    error_message = "A post message is required (minimum 20 characters).";
-  } else {
-    success = true;
-  }
-
-  var result = {
-    success: success,
-    redirect_uri: "posts/view",
-    error_message: error_message
-  };
-  callback(result);
+  $.ajax({
+      type: "POST",
+      url: "/posts/",
+      data: JSON.stringify(post),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(result){
+        callback({
+          success: true,
+          redirect_uri: result.redirect_uri
+        });
+      },
+      error: function(error) {
+        callback({
+          success: false,
+          redirect_uri: null,
+          error_message: error.responseJSON.error_message
+        });
+      }
+  });
 }
 
 /**
@@ -50,6 +53,14 @@ function upvote(state) {
   var vote = {
     upvoted: state
   };
+
+  $.ajax({
+      type: "POST",
+      url: "/posts/upvotes/",
+      data: JSON.stringify(vote),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json"
+    });
 }
 
 // Users
@@ -73,23 +84,26 @@ function signup(username, password, callback) {
     password: password
   };
 
-  var success = false;
-  var error_message = "";
-
-  if (credentials.username == "test") {
-    error_message = "Username taken! Please try another!";
-  } else if (credentials.password.length < 3) {
-    error_message = "Your password is not long enough (3 character minimum)!";
-  } else {
-    success = true;
-  }
-
-  var result = {
-    success: success,
-    redirect_uri: "posts/recent",
-    error_message: error_message
-  };
-  callback(result);
+  $.ajax({
+      type: "POST",
+      url: "/users/",
+      data: JSON.stringify(credentials),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(result){
+        callback({
+          success: true,
+          redirect_uri: result.redirect_uri
+        });
+      },
+      error: function(error) {
+        callback({
+          success: false,
+          redirect_uri: null,
+          error_message: error.responseJSON.error_message
+        });
+      }
+  });
 }
 
 /**
@@ -111,21 +125,24 @@ function login(username, password, callback) {
     password: password
   };
 
-  var success = false;
-  var error_message = "";
-
-  if (credentials.username != "test") {
-    error_message = "We don't recognize your username. Did you want to sign up?";
-  } else if (credentials.password != "123") {
-    error_message = "Login failed.";
-  } else {
-    success = true;
-  }
-
-  var result = {
-    success: success,
-    redirect_uri: "posts/recent",
-    error_message: error_message
-  };
-  callback(result);
+  $.ajax({
+      type: "POST",
+      url: "/users/login",
+      data: JSON.stringify(credentials),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function(result){
+        callback({
+          success: true,
+          redirect_uri: result.redirect_uri
+        });
+      },
+      error: function(error) {
+        callback({
+          success: false,
+          redirect_uri: null,
+          error_message: error.responseJSON.error_message
+        });
+      }
+  });
 }
